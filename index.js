@@ -1,13 +1,40 @@
-/* Your Code Here */
+function createEmployeeRecord(employeeArr) {
+    const employee = {
+        firstName: employeeArr[0],
+        familyName: employeeArr[1],
+        title: employeeArr[2],
+        payPerHour: employeeArr[3],
+        timeInEvents: [],
+        timeOutEvents: []
+    }
+    return employee;
+}
 
-/*
- We're giving you this function. Take a look at it, you might see some usage
- that's new and different. That's because we're avoiding a well-known, but
- sneaky bug that we'll cover in the next few lessons!
+function createEmployeeRecords(employeeData) {
+    return employeeData.map( employee => createEmployeeRecord(employee));
+}
 
- As a result, the lessons for this function will pass *and* it will be available
- for you to use if you need it!
- */
+function createTimeInEvent(timeInString) {
+    const [date, hour] = timeInString.split(' ')
+    this.timeInEvents.push({
+        type: 'TimeIn',
+        hour: hour,
+        date: date,
+    })
+    return this
+}
+
+function createTimeOutEvent(timeOutString) {
+    const [date, hour] = timeOutString.split(' ')
+    this.timeOutEvents.push({
+        type: 'TimeOut',
+        hour: hour,
+        date: date,
+    })
+    return this
+}
+
+  
 
 let allWagesFor = function () {
     let eligibleDates = this.timeInEvents.map(function (e) {
@@ -16,7 +43,6 @@ let allWagesFor = function () {
 
     let payable = eligibleDates.reduce(function (memo, d) {
         return memo + wagesEarnedOnDate.call(this, d)
-    }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
-
+    }.bind(this), 0) 
     return payable
 }
